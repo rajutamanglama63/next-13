@@ -1,5 +1,5 @@
 .container {
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
   height: 100px;
   display: flex;
   align-items: center;
