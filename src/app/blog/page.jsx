@@ -4,31 +4,40 @@ import Link from "next/link";
 import Image from "next/image";
 
 const getData = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
-    cache: "no-store",
-  });
+  try {
+    const res = await fetch("http://localhost:3000/api/posts", {
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    const data = res.json();
+    console.log("data: ", data);
+
+    return data;
+  } catch (error) {
+    console.log("err: ", error);
+    return [];
   }
 
-  return res.json();
+  // if (!res.ok) {
+  //   throw new Error("Failed to fetch data");
+  // }
 };
 
 const Blog = async () => {
   const data = await getData();
+  console.log("data: ", data);
   return (
     <div className={styles.mainContainer}>
       {data.map((item) => (
         <Link
           className={styles.container}
-          href={`/blog/${item.id}`}
-          key={item.id}
+          href={`/blog/${item._id}`}
+          key={item._id}
         >
           <div className={styles.imgContainer}>
             <Image
-              src="https://images.pexels.com/photos/908713/pexels-photo-908713.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt=""
+              src={item.img}
+              alt="picture"
               width={400}
               height={250}
               className={styles.image}
@@ -37,7 +46,7 @@ const Blog = async () => {
 
           <div className={styles.content}>
             <h1 className={styles.title}>{item.title}</h1>
-            <p className={styles.desc}>Desc</p>
+            <p className={styles.desc}>{item.desc}</p>
           </div>
         </Link>
       ))}
