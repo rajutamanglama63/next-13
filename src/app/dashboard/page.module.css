@@ -56,3 +56,7 @@
   color: #eee;
   font-weight: bold;
 }
+
+.button:hover {
+  background-color: #49b07d;
+}

@@ -3,6 +3,7 @@
 import React from "react";
 import styles from "./page.module.css";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 
 const Login = () => {
   const handleSubmit = async (e) => {
@@ -34,7 +35,16 @@ const Login = () => {
           Login
         </button>
       </form>
-      <button onClick={() => signIn("google")}>Login with google</button>
+      <button
+        onClick={() => signIn("google")}
+        className={styles.button + " " + styles.google}
+      >
+        Login with google
+      </button>
+      <span className={styles.or}>- OR -</span>
+      <Link className={styles.link} href="/dashboard/register">
+        Create new account
+      </Link>
     </div>
   );
 };

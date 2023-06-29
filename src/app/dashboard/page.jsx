@@ -73,10 +73,7 @@ const Dashboard = () => {
         }),
       });
       refreshData();
-      e.target[0].value = "";
-      e.target[1].value = "";
-      e.target[2].value = "";
-      e.target[3].value = "";
+      e.target.reset();
     } catch (error) {
       console.log("err: ", error);
     }
