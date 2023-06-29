@@ -25,7 +25,6 @@ const getData = async () => {
 
 const Blog = async () => {
   const data = await getData();
-  console.log("data: ", data);
   return (
     <div className={styles.mainContainer}>
       {data.map((item) => (

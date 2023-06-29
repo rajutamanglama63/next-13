@@ -14,8 +14,6 @@ const Login = () => {
       email,
       password,
     });
-
-    console.log("I'm called...");
   };
   return (
     <div className={styles.container}>

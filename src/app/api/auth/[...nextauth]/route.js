@@ -16,7 +16,6 @@ const handler = NextAuth({
       name: "Credentials",
       async authorize(credentials) {
         // check if the user exist
-        console.log("email: ", credentials.email);
         await connectDB();
 
         try {
