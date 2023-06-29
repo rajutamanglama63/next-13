@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -10,6 +11,8 @@ const Dashboard = () => {
 
   const session = useSession();
   console.log("session: ", session);
+
+  const router = useRouter();
 
   useEffect(() => {
     const getData = async () => {
@@ -30,6 +33,14 @@ const Dashboard = () => {
 
     getData();
   }, []);
+
+  if (session.status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (session.status === "unauthenticated") {
+    router?.push("/dashboard/login");
+  }
 
   return <div className={styles.container}>Dashboard</div>;
 };
